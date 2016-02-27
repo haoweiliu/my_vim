@@ -55,6 +55,8 @@ colorscheme morning
 "设置自动缩进
 set autoindent
 set cindent
+"设置不自动备份，去掉～文件
+set nobackup
 "设置tabstop键宽度
 set tabstop=4
 "统一缩进设置为4
@@ -124,3 +126,5 @@ endf
 "filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu 
+"neocomplcache
+let g:neocomplcache_enable_at_startup = 1
