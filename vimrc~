@@ -58,8 +58,8 @@ set cindent
 "设置tabstop键宽度
 set tabstop=4
 "统一缩进设置为4
-set softtabstop=4
-set shiftwidth=4
+"set softtabstop=4
+"set shiftwidth=4
 "允许backspace和光标键跨越行边界
 set whichwrap+=<,>,h,l
 " 为C程序提供自动缩进
