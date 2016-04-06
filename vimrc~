@@ -51,6 +51,86 @@ endif
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
+<<<<<<< HEAD
 //设置tab键四格模式
 set ts=4
 colorscheme morning
+=======
+colorscheme morning
+"设置自动缩进
+set autoindent
+set cindent
+"设置不自动备份，去掉～文件
+set nobackup
+"设置tabstop键宽度
+set tabstop=4
+"统一缩进设置为4
+set softtabstop=4
+set shiftwidth=4
+"允许backspace和光标键跨越行边界
+set whichwrap+=<,>,h,l
+" 为C程序提供自动缩进
+set smartindent 
+"代码补全
+"set completeopt=preview,menu 
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {<CR>}<Esc>O
+autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap } <c-r>=CloseBracket()<CR>
+inoremap " <c-r>=QuoteDelim('"')<CR>
+inoremap ' <c-r>=QuoteDelim("'")<CR>
+
+function ClosePair(char)
+	if getline('.')[col('.') - 1] == a:char
+		return "\<Right>"
+	else
+		return a:char
+	endif
+endf
+
+function CloseBracket()
+	if match(getline(line('.') + 1), '\s*}') < 0
+		return "\<CR>}"
+	else
+		return "\<Esc>j0f}a"
+	endif
+endf
+
+function QuoteDelim(char)
+	let line = getline('.')
+	let col = col('.')
+	if line[col - 2] == "\\"
+		return a:char
+	elseif line[col - 1] == a:char
+		return "\<Right>"
+	else
+		return a:char.a:char."\<Esc>i"
+	endif
+endf
+"自动补全_______yi zhu xiao 
+":inoremap ( ()<ESC>i 
+":inoremap ) <c-r>=ClosePair(')')<CR>
+":inoremap { {<CR>}<ESC>O 
+":inoremap } <c-r>=ClosePair('}')<CR> 
+":inoremap [ []<ESC>i 
+":inoremap ] <c-r>=ClosePair(']')<CR> 
+":inoremap " ""<ESC>i 
+":inoremap " <c-r>=ClosePair('"')<CR> 
+":inoremap ' ''<ESC>i 
+":inoremap ' <c-r>=ClosePair('\'')<CR> 
+"function! ClosePair(char) 
+"if getline('.')[col('.') - 1] == a:char 
+"return "\<Right>" 
+"else 
+"return a:char 
+"endif 
+"endfunction 
+"filetype plugin indent on 
+"打开文件类型检测, 加了这句才可以用智能补全
+set completeopt=longest,menu 
+"neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+>>>>>>> a867159219b01a11337a98ef3bc48ff151d87779
